@@ -25,10 +25,20 @@
             <p>This is a paragraph created inside jsdom.</p>
           </body>
         </html>
-      `);
+      `,
+      'https://duckduckgo.com',
+      {
+        pretendToBeVisual: true,
+        runScripts: 'dangerously',
+        virtualConsole: new jsdom.VirtualConsole()
+      });
+
+      dom.virtualConsole.sendTo(console);
 
       // Access the simulated document from JSDOM
       const { document } = dom.window;
+
+      dom.window.eval('console.log("hi")');
 
       // Manipulate the virtual JSDOM document
       const outputDiv = document.createElement('div');

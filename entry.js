@@ -1,5 +1,5 @@
 
-import { JSDOM } from 'jsdom';
+import { JSDOM, VirtualConsole, CookieJar  } from 'jsdom';
 
 // Export the necessary components
-export { JSDOM };
+export { JSDOM, VirtualConsole, CookieJar };
