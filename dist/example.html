@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jsdom Example</title>
+</head>
+<body>
+  <h1>jsdom Example</h1>
+
+  <!-- Container to show jsdom output -->
+  <div id="output"></div>
+
+  <!-- Load jsdom.js (bundled file) -->
+  <script src="./jsdom.js"></script>
+  <script>
+    // Wait for jsdom to be available
+    if (typeof jsdom !== "undefined") {
+      // Create a new JSDOM instance with HTML content
+      const dom = new jsdom.JSDOM(`
+        <html>
+          <head><title>Test Page</title></head>
+          <body>
+            <h2>Hello from jsdom</h2>
+            <p>This is a paragraph created inside jsdom.</p>
+          </body>
+        </html>
+      `);
+
+      // Access the simulated document from JSDOM
+      const { document } = dom.window;
+
+      // Manipulate the virtual JSDOM document
+      const outputDiv = document.createElement('div');
+      outputDiv.id = "output"; // Set the ID to match the real document
+
+      outputDiv.innerHTML = `
+        <strong>Title of jsdom's document:</strong> ${document.title} <br />
+        <strong>Heading:</strong> ${document.querySelector("h2").textContent} <br />
+        <strong>Paragraph:</strong> ${document.querySelector("p").textContent}
+      `;
+
+      // Now update the real DOM with the modified content
+      document.body.appendChild(outputDiv); // Append the created div to the body
+
+      // Or, directly modify the real document's #output div if needed
+      document.getElementById("output").innerHTML = outputDiv.innerHTML;
+
+      // Optionally log the final result to the console
+      console.log(outputDiv.innerHTML);
+    }
+  </script>
+</body>
+</html>

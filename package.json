@@ -1,0 +1,21 @@
+{
+  "name": "jsdom-browser-build",
+  "version": "1.0.0",
+  "description": "A bundled version of jsdom for browser-like environments using Webpack.",
+  "main": "dist/jsdom.js",
+  "license":"MIT",
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "dependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "babel-loader": "^9.2.1",
+    "jsdom": "^26.0.0",
+    "node-polyfill-webpack-plugin": "^2.0.1",
+    "path-browserify": "^1.0.1",
+    "util": "^0.12.5",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
+  }
+}
